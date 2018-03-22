@@ -45,7 +45,7 @@
                   // map.clearOverlays();        //清除地图覆盖物       
                   var count = rs.boundaries.length; //行政区域的点有多少个
                   if (count === 0) {
-                    alert('未能获取当前输入行政区域---'+name);
+                    // alert('未能获取当前输入行政区域---'+name);
                     return ;
                   }
                         var pointArray = [];
