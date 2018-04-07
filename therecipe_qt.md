@@ -31,6 +31,8 @@ git clone https://github.com/golang/sys.git
 
 再次 go get -u -v github.com/therecipe/qt/cmd/...
 
+*** install msys2 to get the c++ on windows,http://www.msys2.org/,https://lug.ustc.edu.cn/wiki/mirrors/help/msys2
+
 
 
 ```
