@@ -1,6 +1,6 @@
-###Git仓库完整迁移 含历史记录
+### Git仓库完整迁移 含历史记录
 
-#####推荐方法
+##### 推荐方法
 ```
 git clone --bare https://git.coding.net/dalalao/whsc.git
 cd whsc.git
@@ -8,10 +8,12 @@ git push --mirror git@glab.yungengxin.net.cn:culture-group/whsc.git
 
 直接一起执行
 git clone --bare https://git.coding.net/dalalao/whsc.git && cd whsc.git && git push --mirror git@glab.yungengxin.net.cn:culture-group/whsc.git
+
+https://blog.csdn.net/candyguy242/article/details/45920111
 ```
 
 
-#####笨办法
+##### 笨办法
 
 ```
 ##如我想把linux_datagrand.git这个库里的文件迁移至daguan.git这个新库中，要求如下：
@@ -52,4 +54,6 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 所以把本地的分支push到远程仓库命令：
 git push -f test master
 ##这个时候，我们已经把linux_datagrand.git这个库里的文件迁移至daguan.git这个新库中了。
+
+http://blog.51cto.com/wutengfei/2090253
 ```
