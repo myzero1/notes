@@ -56,7 +56,7 @@ func (c *MigrationsController) GetOne() {
 
 ......
 type Migrations struct {
-	Id                 int       `orm:"column(id_migration);auto" description:"surrogate key:735" example:"735"`
+	Id                 int       `orm:"column(id_migration);auto" description:"surrogate key: 735" example:"735"`
 	Name               string    `orm:"column(name);size(255);null" description:"migration name, unique"`
 	CreatedAt          time.Time `orm:"column(created_at);type(timestamp);auto_now_add" description:"date migrated or rolled back"`
 	Statements         string    `orm:"column(statements);null" description:"SQL statements for this migration"`
