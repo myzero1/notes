@@ -1,3 +1,5 @@
+# 禅道DI统计
+
 // ==UserScript==
 // @name         chandao
 // @namespace    http://tampermonkey.net/
