@@ -3,6 +3,8 @@
 
 ```
 
+
+
 // ==UserScript==
 // @name         chandao
 // @namespace    http://tampermonkey.net/
@@ -41,6 +43,7 @@ function getNowFormatDate() {
     $(document).ready(function(){
         var di = {};
         var delay = 0;
+        var requirement = 0;
 
         $("#bugList tbody tr").each(function(){
             var name = $(this).children("td:eq(5)").text();
@@ -81,6 +84,10 @@ function getNowFormatDate() {
             if('延期处理' == $(this).children("td:eq(7)").text()){
                 delay = delay + val;
             }
+
+            if($(this).children("td:eq(3)").text().indexOf('需求') != -1){
+                requirement = requirement + val;
+            }
         });
 
         var items = [];
@@ -94,23 +101,24 @@ function getNowFormatDate() {
         }
 
         var subtotal = [];
-        var endTotal = (total-delay-di['肖涛']).toFixed(1);
+        var endTotal = (total-delay-requirement).toFixed(1);
         subtotal.push('<tr  style="color:red"><td>概要</td><td></td></tr>');
         subtotal.push('<tr><td>'+'统计时间'+'</td><td>'+getNowFormatDate()+'</td></tr>');
-        subtotal.push('<tr><td>'+'总计-产品-延期处理'+'</td><td>'+endTotal+'</td></tr>');
+        subtotal.push('<tr><td>'+'总计-需求-延期处理'+'</td><td>'+endTotal+'</td></tr>');
         subtotal.push('<tr><td>'+'总计'+'</td><td>'+total+'</td></tr>');
-        subtotal.push('<tr><td>'+'产品'+'</td><td>'+di['肖涛']+'</td></tr>');
+        subtotal.push('<tr><td>'+'需求'+'</td><td>'+requirement+'</td></tr>');
         subtotal.push('<tr><td>'+'延期处理'+'</td><td>'+delay+'</td></tr>');
 
         var itemsStr = '<table class="table table-condensed table-hover table-striped tablesorter table-fixed">'+subtotal.join('')+items.join('')+'</table>'
 
         $('#titlebar').after('<div style="margin-bottom:50px">'+itemsStr+'</div>');
 
-        console.log(di);
+        // console.log(di);
     });
 
 
 })();
+
 
 
 
