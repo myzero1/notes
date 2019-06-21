@@ -1,5 +1,8 @@
 # 禅道DI统计
 
+
+```
+
 // ==UserScript==
 // @name         chandao
 // @namespace    http://tampermonkey.net/
@@ -28,7 +31,7 @@ function getNowFormatDate() {
     date.toLocaleTimeString();     //获取当前时间   如 下午4:45:06
     date.toLocaleString();         //获取日期与时间 如 2014年6月25日 下午4:45:06
     */
-    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    return date.getFullYear() + '-' + (parseInt(date.getMonth())+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 }
 
 (function() {
@@ -108,3 +111,7 @@ function getNowFormatDate() {
 
 
 })();
+
+
+
+```
