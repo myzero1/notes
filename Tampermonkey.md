@@ -1,14 +1,10 @@
-# 禅道di统计
-
-```
 // ==UserScript==
 // @name         chandao
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://172.16.62.3/zentaopms/www/project-bug-18-status,id_desc-0-1136-1000-1.html
-// @match        http://172.16.62.3/zentaopms/www/project-bug-18-status-0-1136-50-1.html
+// @match        http://172.16.62.3/zentaopms/www/project-bug-18.html
 // @grant        none
 // @require    http://code.jquery.com/jquery-1.11.0.min.js
 // ==/UserScript==
@@ -39,9 +35,11 @@ function getNowFormatDate() {
     // Your code here...
     $(document).ready(function(){
         var di = {};
+        var delay = 0;
 
         $("#bugList tbody tr").each(function(){
             var name = $(this).children("td:eq(5)").text();
+            // console.log(name);
             if(name == 'Closed'){
                 return false;//实现break功能
                 // return ;//实现continue功能
@@ -56,39 +54,50 @@ function getNowFormatDate() {
 
             switch(val) {
                 case 1:
-                    val = val * 10;
+                    val = 10;
                     break;
                 case 2:
-                    val = val * 3;
+                    val = 3;
                     break;
                 case 3:
-                    val = val * 1;
+                    val = 1;
                     break;
                 case 4:
-                    val = val * 0.1;
+                    val = 0.1;
                     break;
             }
 
             if(di[name] == undefined){
                 di[name] = 0
-              }
+            }
 
             di[name] = di[name] + val;
+
+            if('延期处理' == $(this).children("td:eq(7)").text()){
+                delay = delay + val;
+            }
         });
 
         var items = [];
         var total = 0;
+        items.push('<tr  style="color:red"><td>明细</td><td></td></tr>');
         for (var k in di) {
             // var item = listStr + k + ':' + di[k] + "<br>";
-            items.push('<tr><td>'+k+'</td><td>'+di[k]+'</td></tr>');
+            items.push('<tr><td>'+k+'</td><td>'+di[k].toFixed(1)+'</td></tr>');
 
             total = di[k] + total;
         }
 
-        items.unshift('<tr><td>'+'统计时间'+'</td><td>'+getNowFormatDate()+'</td></tr>');
-        items.unshift('<tr><td>'+'合计'+'</td><td>'+total+'</td></tr>');
+        var subtotal = [];
+        var endTotal = (total-delay-di['肖涛']).toFixed(1);
+        subtotal.push('<tr  style="color:red"><td>概要</td><td></td></tr>');
+        subtotal.push('<tr><td>'+'统计时间'+'</td><td>'+getNowFormatDate()+'</td></tr>');
+        subtotal.push('<tr><td>'+'总计-产品-延期处理'+'</td><td>'+endTotal+'</td></tr>');
+        subtotal.push('<tr><td>'+'总计'+'</td><td>'+total+'</td></tr>');
+        subtotal.push('<tr><td>'+'产品'+'</td><td>'+di['肖涛']+'</td></tr>');
+        subtotal.push('<tr><td>'+'延期处理'+'</td><td>'+delay+'</td></tr>');
 
-        var itemsStr = '<table class="table table-condensed table-hover table-striped tablesorter table-fixed">'+items.join('')+'</table>'
+        var itemsStr = '<table class="table table-condensed table-hover table-striped tablesorter table-fixed">'+subtotal.join('')+items.join('')+'</table>'
 
         $('#titlebar').after('<div style="margin-bottom:50px">'+itemsStr+'</div>');
 
@@ -97,5 +106,3 @@ function getNowFormatDate() {
 
 
 })();
-
-```
