@@ -9,7 +9,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://172.16.62.3/zentaopms/www/project-bug-18.html
+// @match        http://172.16.62.3/zentaopms/www/project-bug-18-status,id_desc-0-1136-50-1.html
 // @grant        none
 // @require    http://code.jquery.com/jquery-1.11.0.min.js
 // ==/UserScript==
