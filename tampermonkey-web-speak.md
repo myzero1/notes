@@ -1,5 +1,6 @@
 ```js
 
+
 // ==UserScript==
 // @name         web朗读
 // @namespace    http://tampermonkey.net/
@@ -74,17 +75,15 @@
 
             }, i * 23000)
 
-            if(window.strTmp.length == 0){
+            if(i == bodyarray.length-1){
                 setTimeout(function(){
-                    $('#pb_next').click()
+                    window.location.href=$('#pb_next').attr('href')
                 }, (i+1) * 23000)
-
             }
         }
     });
 
 
 })();
-
 
 ````
